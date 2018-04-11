@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "996677636919",
+    "firebase_url": "https://remus-18c10.firebaseio.com",
+    "project_id": "remus-18c10",
+    "storage_bucket": "remus-18c10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996677636919:android:5460bd6270abc949",
+        "android_client_info": {
+          "package_name": "com.una.optimizeprime.remus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996677636919-efkhka2dphr2u9srkepugkimdb3c0r0d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.una.optimizeprime.remus",
+            "certificate_hash": "e68d89f817e394a5eb768557e3bc42bd45ad64db"
+          }
+        },
+        {
+          "client_id": "996677636919-9c1nihavo7b67jio71p3b3trr14i254v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEVkENxTVOzT3q04MNuOQjnMwLEbkKh-c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996677636919-9c1nihavo7b67jio71p3b3trr14i254v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
