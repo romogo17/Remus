@@ -177,7 +177,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
             this.finish();
         } else {
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
+            //findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         }
     }
 
