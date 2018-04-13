@@ -9,4 +9,6 @@
     <string name="loading">Loading…</string>
     <string name="desc_firebase_lockup">Firebase logo and name</string>
 
+    <string name="search">Search</string>
+
 </resources>
