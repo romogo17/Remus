@@ -9,5 +9,7 @@
     <string name="desc_firebase_lockup">Logo de Firebase y nombre</string>
 
     <string name="search">Search</string>
+    <string name="remus_icon">Icono de Remus</string>
+    <string name="use_without_account">Usar sin cuenta</string>
 
 </resources>

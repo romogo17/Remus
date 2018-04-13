@@ -1,9 +1,13 @@
 package com.una.optimizeprime.remus;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -190,10 +194,33 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
             case R.id.sign_out_button: signOut(); break;
             case R.id.disconnect_button: revokeAccess(); break;
             case R.id.without_acc_button:
-                // Starts a new activity of SelectorActivity class
                 Intent intent = new Intent(getApplicationContext(), SelectorActivity.class);
                 startActivity(intent);
                 this.finish();
+                //((Activity) getApplicationContext()).finish();
+                /*
+                AlertDialog.Builder builder;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder = new AlertDialog.Builder(getApplicationContext(), android.R.style.Theme_Material_Dialog_Alert);
+                } else {
+                    builder = new AlertDialog.Builder(getApplicationContext());
+                }
+                builder.setTitle("Do you want to continue?")
+                        .setMessage("If you use Remus without an account, the app won't be able to save your score and ranking for each exercise")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                // Starts a new activity of SelectorActivity class
+                */
                 break;
         }
     }
