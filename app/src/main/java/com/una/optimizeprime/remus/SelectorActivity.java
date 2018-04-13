@@ -1,7 +1,9 @@
 package com.una.optimizeprime.remus;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -40,7 +42,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         // Set the activity drawer
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -58,13 +60,14 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
                                 // Starts a new activity of SignInActivity class
                                 Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                                 startActivity(intent);
-                                //finalize();
+                                finish();
                                 break;
                             case R.id.nav_sign_in:
                                 // Starts a new activity of SignInActivity class
                                 intent = new Intent(getApplicationContext(), SignInActivity.class);
                                 startActivity(intent);
-                                //finalize();
+                                finish();
+                                break;
 
                         }
 
@@ -126,7 +129,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.goto_exercise:
-                // Starts a new activity of ExerciseActivity class
+                //Starts a new activity of ExerciseActivity class
                 Intent intent = new Intent(getApplicationContext(), ExerciseActivity.class);
                 startActivity(intent);
                 break;

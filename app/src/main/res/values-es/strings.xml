@@ -11,5 +11,9 @@
     <string name="use_without_account">Usar sin cuenta</string>
     <string name="sign_in">Acceder</string>
     <string name="guest_display_name">Invitado</string>
-
+    <string name="continue_confirmation">¿Desea continuar?</string>
+    <string name="without_acc_alert">Si utiliza Remus sin una cuenta, la aplicación no podrá salvar su puntaje y ranking para cada ejercicio</string>
+    <string name="google_auth_failed">Autenticación con Google fallida</string>
+    <string name="firebase_auth_failed">Autenticación con Firebase fallida</string>
+    <string name="app_name">Remus</string>
 </resources>

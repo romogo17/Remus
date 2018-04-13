@@ -95,9 +95,15 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
-                // [START_EXCLUDE]
+                Snackbar.make(findViewById(R.id.drawer_layout), R.string.google_auth_failed, Snackbar.LENGTH_INDEFINITE)
+                        .setAction(android.R.string.yes, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        })
+                        .show();
                 updateUI(null);
-                // [END_EXCLUDE]
             }
         }
     }
@@ -123,13 +129,17 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(R.id.drawer_layout), R.string.firebase_auth_failed, Snackbar.LENGTH_INDEFINITE)
+                                    .setAction(android.R.string.yes, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                        }
+                                    })
+                                    .show();
                             updateUI(null);
                         }
-
-                        // [START_EXCLUDE]
                         hideProgressDialog();
-                        // [END_EXCLUDE]
                     }
                 });
     }
@@ -194,22 +204,14 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
             case R.id.sign_out_button: signOut(); break;
             case R.id.disconnect_button: revokeAccess(); break;
             case R.id.without_acc_button:
-                Intent intent = new Intent(getApplicationContext(), SelectorActivity.class);
-                startActivity(intent);
-                this.finish();
-                //((Activity) getApplicationContext()).finish();
-                /*
-                AlertDialog.Builder builder;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    builder = new AlertDialog.Builder(getApplicationContext(), android.R.style.Theme_Material_Dialog_Alert);
-                } else {
-                    builder = new AlertDialog.Builder(getApplicationContext());
-                }
-                builder.setTitle("Do you want to continue?")
-                        .setMessage("If you use Remus without an account, the app won't be able to save your score and ranking for each exercise")
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.continue_confirmation)
+                        .setMessage(R.string.without_acc_alert)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-
+                                Intent intent = new Intent(getApplicationContext(), SelectorActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -219,8 +221,6 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
-                // Starts a new activity of SelectorActivity class
-                */
                 break;
         }
     }
