@@ -2,15 +2,14 @@
     <string name="app_name">Remus</string>
     <string name="remus_title_text">Remus</string>
     <string name="powered_by">powered by</string>
-
-
     <string name="sign_out">Sign Out</string>
     <string name="disconnect">Disconnect</string>
     <string name="loading">Loading…</string>
     <string name="desc_firebase_lockup">Firebase logo and name</string>
-
-    <string name="search">Search</string>
+    <string name="search">Search Exercise</string>
     <string name="remus_icon">Remus Icon</string>
     <string name="use_without_account">Use without account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="guest_display_name">Guest</string>
 
 </resources>

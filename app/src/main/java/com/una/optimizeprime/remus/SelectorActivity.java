@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -59,6 +60,11 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
                                 startActivity(intent);
                                 //finalize();
                                 break;
+                            case R.id.nav_sign_in:
+                                // Starts a new activity of SignInActivity class
+                                intent = new Intent(getApplicationContext(), SignInActivity.class);
+                                startActivity(intent);
+                                //finalize();
 
                         }
 
@@ -69,29 +75,41 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         mDrawerLayout.addDrawerListener(
                 new DrawerLayout.DrawerListener() {
                     @Override
-                    public void onDrawerSlide(View drawerView, float slideOffset) {
-                        // Respond when the drawer's position changes
+                    public void onDrawerSlide(View drawerView, float slideOffset) {  // Respond when the drawer's position changes
                     }
-
                     @Override
-                    public void onDrawerOpened(View drawerView) {
-                        // Respond when the drawer is opened
+                    public void onDrawerOpened(View drawerView) { // Respond when the drawer is opened
                     }
-
                     @Override
-                    public void onDrawerClosed(View drawerView) {
-                        // Respond when the drawer is closed
+                    public void onDrawerClosed(View drawerView) { // Respond when the drawer is closed
                     }
-
                     @Override
-                    public void onDrawerStateChanged(int newState) {
-                        // Respond when the drawer motion state changes
+                    public void onDrawerStateChanged(int newState) { // Respond when the drawer motion state changes
                     }
                 }
         );
 
+        updateNavigationDrawer(navigationView);
+
+
         // Set the listeners
         findViewById(R.id.goto_exercise).setOnClickListener(this);
+    }
+
+    private void updateNavigationDrawer(NavigationView navigationView) {
+        // Set the navbar options according to the logged user
+        View header = navigationView.getHeaderView(0);
+        TextView headerTitle = (TextView) header.findViewById(R.id.nav_header_title);
+
+        if (mAuth.getCurrentUser() !=  null){
+            // There is a user logged in
+            navigationView.getMenu().findItem(R.id.nav_sign_in).setVisible(false);
+            headerTitle.setText(mAuth.getCurrentUser().getDisplayName());
+
+        } else {
+            navigationView.getMenu().findItem(R.id.nav_sign_out).setVisible(false);
+            headerTitle.setText(getString(R.string.guest_display_name));
+        }
     }
 
     @Override
