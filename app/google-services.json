@@ -15,19 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "996677636919-59pu1ls28qb2cmqk9h1b89i32mgsdbae.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.una.optimizeprime.remus",
-            "certificate_hash": "8299999b5631b441cf06a1f2c9e7be11f636e08c"
-          }
-        },
-        {
-          "client_id": "996677636919-kjjutop4j73g64q768q794j95427nq1m.apps.googleusercontent.com",
+          "client_id": "996677636919-f1gntngkm3mqg4eptjaf9ceo9cl3c63f.apps.googleusercontent.com",
           "client_type": 3
         },
         {
-          "client_id": "996677636919-ficsf961at5u08krh89vmmsqq209qnav.apps.googleusercontent.com",
+          "client_id": "996677636919-cg5a92l3v77trg92sarbbniccrlv132q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.una.optimizeprime.remus",
@@ -35,8 +27,12 @@
           }
         },
         {
-          "client_id": "996677636919-9c1nihavo7b67jio71p3b3trr14i254v.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "996677636919-iislonu78o4dnb8th6mstsfiui607lno.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.una.optimizeprime.remus",
+            "certificate_hash": "8299999b5631b441cf06a1f2c9e7be11f636e08c"
+          }
         }
       ],
       "api_key": [
@@ -52,7 +48,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "996677636919-kjjutop4j73g64q768q794j95427nq1m.apps.googleusercontent.com",
+              "client_id": "996677636919-f1gntngkm3mqg4eptjaf9ceo9cl3c63f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
