@@ -48,11 +48,13 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
+        findViewById(R.id.without_acc_button).setOnClickListener(this);
 
         // [START config_signin]
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
+                //.requestIdToken("996677636919-9c1nihavo7b67jio71p3b3trr14i254v.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
         // [END config_signin]
@@ -183,13 +185,16 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.sign_in_button) {
-            signIn();
-        } else if (i == R.id.sign_out_button) {
-            signOut();
-        } else if (i == R.id.disconnect_button) {
-            revokeAccess();
+        switch (v.getId()){
+            case R.id.sign_in_button: signIn(); break;
+            case R.id.sign_out_button: signOut(); break;
+            case R.id.disconnect_button: revokeAccess(); break;
+            case R.id.without_acc_button:
+                // Starts a new activity of SelectorActivity class
+                Intent intent = new Intent(getApplicationContext(), SelectorActivity.class);
+                startActivity(intent);
+                this.finish();
+                break;
         }
     }
 }
