@@ -75,6 +75,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder
                 // Starts a new activity of ExerciseActivity class
                 Intent intent = new Intent(context, ExerciseActivity.class);
                 intent.putExtra("Exercise", exercises.get(i));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });

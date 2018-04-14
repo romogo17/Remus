@@ -27,4 +27,7 @@
     <string name="A">La</string>
     <string name="B">Si</string>
     <string name="CM">DoM</string>
+    <string name="question_label">¿Cual es el tono de la nota?</string>
+    <string name="points_label">Puntos:</string>
+    <string name="num_answer_label">Respondidas:</string>
 </resources>

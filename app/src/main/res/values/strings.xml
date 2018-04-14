@@ -26,5 +26,8 @@
     <string name="A">A</string>
     <string name="B">B</string>
     <string name="CM">CM</string>
+    <string name="question_label">What is the tone of the note?</string>
+    <string name="points_label">Points:</string>
+    <string name="num_answer_label">Answer:</string>
 
 </resources>
