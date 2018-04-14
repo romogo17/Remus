@@ -15,5 +15,16 @@
     <string name="without_acc_alert">If you use Remus without an account, the app won\'t be able to save your score and ranking for each exercise</string>
     <string name="google_auth_failed">Google authentication failed</string>
     <string name="firebase_auth_failed">Firebase authentication failed</string>
+    <string name="clef_label">Clef:</string>
+    <string name="key_label">Key:</string>
+    <string name="added_by">Added by %1$s</string>
+    <string name="C">C</string>
+    <string name="D">D</string>
+    <string name="E">E</string>
+    <string name="F">F</string>
+    <string name="G">G</string>
+    <string name="A">A</string>
+    <string name="B">B</string>
+    <string name="CM">CM</string>
 
 </resources>

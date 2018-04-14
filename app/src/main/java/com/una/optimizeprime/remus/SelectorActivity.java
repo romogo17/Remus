@@ -2,6 +2,7 @@ package com.una.optimizeprime.remus;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -49,19 +50,35 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         // Update the Navigation drawer according to the user
         updateNavigationDrawer();
 
-
-
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-
-
         // specify an adapter (see also next example)
         List<Exercise> exercises = new ArrayList<>();
-        exercises.add(new Exercise("GG", "Roberto Mora", "CM", "Twinkle Twinkle Little Star", null, 3));
-        exercises.add(new Exercise("G", "Pedro Carazo", "CM", "C Major Scale", null, 1));
-        exercises.add(new Exercise("G", "Ketcha Hernandez", "CM", "Despacito", null, 2));
+        exercises.add(new Exercise("G", "Roberto Mora", "CM", "Twinkle Twinkle Little Star", new ArrayList<String>(){{
+                add("C");
+                add("C");
+                add("G");
+                add("G");
+                add("A");
+                add("A");
+                add("G");
+            }}, 3));
+        exercises.add(new Exercise("G", "Pedro Carazo", "CM", "C Major Scale", new ArrayList<String>(){{
+                add("C");
+                add("D");
+                add("E");
+                add("F");
+                add("G");
+                add("A");
+                add("B");
+            }}, 1));
+        exercises.add(new Exercise("G", "Ketcha Hernandez", "CM", "Despacito", new ArrayList<String>(){{
+                add("D");
+                add("D");
+                add("C");
+                add("C");
+            }}, 2));
 
-        mAdapter = new RVAdapter(exercises);
+        mAdapter = new RVAdapter(exercises, getResources(), getApplicationContext());
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);

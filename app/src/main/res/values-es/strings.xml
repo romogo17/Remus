@@ -16,4 +16,15 @@
     <string name="google_auth_failed">Autenticación con Google fallida</string>
     <string name="firebase_auth_failed">Autenticación con Firebase fallida</string>
     <string name="app_name">Remus</string>
+    <string name="clef_label">Clave:</string>
+    <string name="key_label">Tono:</string>
+    <string name="added_by">"Añadido por %1$s "</string>
+    <string name="C">Do</string>
+    <string name="D">Re</string>
+    <string name="E">Mi</string>
+    <string name="F">Fa</string>
+    <string name="G">Sol</string>
+    <string name="A">La</string>
+    <string name="B">Si</string>
+    <string name="CM">DoM</string>
 </resources>
