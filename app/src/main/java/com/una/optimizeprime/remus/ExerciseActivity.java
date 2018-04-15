@@ -1,12 +1,17 @@
 package com.una.optimizeprime.remus;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +74,7 @@ public class ExerciseActivity extends AppCompatActivity {
         OnclickDelButton(R.id.option_2);
         OnclickDelButton(R.id.option_3);
         OnclickDelButton(R.id.option_4);
+        OnclickDelButton(R.id.rating);
 
         /**
          * Esto es solo de prueba para verificar que se esta pasando el objeto correcto
@@ -136,6 +142,11 @@ public class ExerciseActivity extends AppCompatActivity {
                             points.setText(String.valueOf(score));
                         }
                         break;
+                    case R.id.rating:
+                        //Mensaje("Implementar Button5");
+                        DialogSiNO_01();
+                        break;
+
                     default: break;
                 }
                 count++;
@@ -223,4 +234,28 @@ public class ExerciseActivity extends AppCompatActivity {
         }
         return R.string.C;
     }
+
+    //Dialogo para el rating
+    public void DialogSiNO_01(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("You want to evaluate this?");
+        LayoutInflater inflater = getLayoutInflater();
+        builder1.setView(inflater.inflate(R.layout.dialog_rating, null));
+        builder1.setCancelable(true);
+        builder1.setPositiveButton("Si",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Mensaje("positivo");
+                        RatingBar Mi_ratingbar = (RatingBar) findViewById(R.id.ratingBar1);
+                        Mi_ratingbar.setProgress(1+Mi_ratingbar.getProgress());
+                    } });
+
+        builder1.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {Mensaje("negativo"); } });
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    };
+
+
 }
