@@ -15,5 +15,9 @@
             android:id="@+id/nav_sign_in"
             android:icon="@drawable/ic_directions_run_black_24dp"
             android:title="@string/sign_in" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="@string/nav_authors" />
     </group>
 </menu>

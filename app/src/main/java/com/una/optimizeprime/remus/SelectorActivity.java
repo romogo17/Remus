@@ -17,6 +17,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -94,7 +96,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
 
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
-                        switch (menuItem.getItemId()){
+                        switch (menuItem.getItemId()) {
                             case R.id.nav_sign_out:
                                 mAuth.signOut();
                                 // Starts a new activity of SignInActivity class
@@ -108,7 +110,10 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
                                 startActivity(intent);
                                 finish();
                                 break;
-
+                            case R.id.nav_about:
+                                // Starts a new activity of SignInActivity class
+                                intent = new Intent(getApplicationContext(), AboutActivity.class);
+                                startActivity(intent);
                         }
 
                         return true;
@@ -120,12 +125,15 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onDrawerSlide(View drawerView, float slideOffset) {  // Respond when the drawer's position changes
                     }
+
                     @Override
                     public void onDrawerOpened(View drawerView) { // Respond when the drawer is opened
                     }
+
                     @Override
                     public void onDrawerClosed(View drawerView) { // Respond when the drawer is closed
                     }
+
                     @Override
                     public void onDrawerStateChanged(int newState) { // Respond when the drawer motion state changes
                     }
@@ -149,7 +157,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         View header = navigationView.getHeaderView(0);
         TextView headerTitle = (TextView) header.findViewById(R.id.nav_header_title);
 
-        if (mAuth.getCurrentUser() !=  null){
+        if (mAuth.getCurrentUser() != null) {
             // There is a user logged in
             navigationView.getMenu().findItem(R.id.nav_sign_in).setVisible(false);
             headerTitle.setText(mAuth.getCurrentUser().getDisplayName());
@@ -171,8 +179,21 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (mDrawerLayout.isDrawerOpen(navigationView)) {
+                mDrawerLayout.closeDrawers();
+            } else {
+                mDrawerLayout.openDrawer(Gravity.START);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
 //            case R.id.goto_exercise:
 //                //Starts a new activity of ExerciseActivity class
 //                Intent intent = new Intent(getApplicationContext(), ExerciseActivity.class);

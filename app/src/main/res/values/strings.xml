@@ -33,4 +33,6 @@
     <string name="your_score_label">Your score is:</string>
     <string name="your_time_label">Your time is:</string>
     <string name="exercise_is">"Exercise is %1$s "</string>
+    <string name="cedula_label">Identification:</string>
+    <string name="nav_authors">Authors</string>
 </resources>
