@@ -39,6 +39,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     ArrayList<Exercise> exercises = new ArrayList<>();
     Database db;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         // Configure the recycler view
         configureRecyclerView();
 
-        db = new Database();
+        db = Database.getInstance();
         db.subscribeToExercises(this);
     }
 
@@ -68,7 +69,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         // specify an adapter (see also next example)
         exercises = new ArrayList<>();
 
-        mAdapter = new RVAdapter(exercises, getResources(), getApplicationContext());
+        mAdapter = new RVAdapter(exercises, getResources(), getApplicationContext(), this);
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -182,12 +183,11 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void update(Observable observable, Object o) {
-        // Clear the old dataset
+        // Clear the old data set
         this.exercises.clear();
         // Add all the new ones
         this.exercises.addAll(db.getExercises());
         // Notify the change to the adapter
         mAdapter.notifyDataSetChanged();
-        //db.writeExercise(exercises.get(0));
     }
 }

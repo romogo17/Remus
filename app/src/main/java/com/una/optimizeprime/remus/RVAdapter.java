@@ -1,5 +1,6 @@
 package com.una.optimizeprime.remus;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -22,8 +23,9 @@ import java.util.List;
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder> {
 
     List<Exercise> exercises;
-    public Resources resources;
-    public Context context;
+    private Resources resources;
+    private Context context;
+    private Activity activity;
     // Allows to remember the last item shown on screen
     private int lastPosition = -1;
 
@@ -49,10 +51,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder
     }
 
 
-    RVAdapter(List<Exercise> exercises, Resources resources, Context context){
+    RVAdapter(List<Exercise> exercises, Resources resources, Context context, Activity activity){
         this.exercises = exercises;
         this.resources = resources;
         this.context = context;
+        this.activity = activity;
     }
 
     // Create new views (invoked by the layout manager)
@@ -82,6 +85,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder
                 intent.putExtra("Exercise", exercises.get(i));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
+                activity.finish();
             }
         });
 

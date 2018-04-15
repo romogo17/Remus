@@ -27,11 +27,11 @@
     <string name="A">La</string>
     <string name="B">Si</string>
     <string name="CM">DoM</string>
-    <string name="question_label">¿Cual es el tono de la nota?</string>
+    <string name="question_label">Seleccione la nota</string>
     <string name="points_label">Puntos:</string>
-    <string name="num_answer_label">Respondidas:</string>
-    <string name="You_want_to_evaluate_this">Usted quiere evaluar esto?</string>
-    <string name="Rating">Evaluar</string>
-    <string name="Si">Si</string>
-    <string name="No">No</string>
+    <string name="answer_progress_label">Progreso:</string>
+    <string name="rate_alert_title">¿Desea calificar este ejercicio?</string>
+    <string name="your_score_label">Su calificacion es:</string>
+    <string name="your_time_label">Su tiempo es:</string>
+    <string name="exercise_is">El ejercicio es %1$s</string>
 </resources>

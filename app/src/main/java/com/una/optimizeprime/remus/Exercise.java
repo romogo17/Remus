@@ -13,6 +13,7 @@ public class Exercise implements Parcelable {
     private String name;
     private ArrayList<String> notes;
     private ArrayList<Score> scores;
+    private String exerciseId = null;
 
     public Exercise() {
     }
@@ -24,6 +25,7 @@ public class Exercise implements Parcelable {
         this.name = name;
         this.notes = notes;
         this.scores = scores;
+        this.exerciseId = null;
     }
 
     @Override
@@ -47,6 +49,13 @@ public class Exercise implements Parcelable {
         return sum/scores.size();
     }
 
+    public void addScore(Score score){
+        if(scores == null){
+            scores = new ArrayList<>();
+        }
+        scores.add(score);
+    }
+
     public String getClef() {
         return clef;
     }
@@ -67,8 +76,16 @@ public class Exercise implements Parcelable {
         return notes;
     }
 
+    public String getId() {
+        return exerciseId;
+    }
+
     public ArrayList<Score> getScores() {
         return scores;
+    }
+
+    public String getExerciseId() {
+        return exerciseId;
     }
 
     public void setClef(String clef) {
@@ -95,6 +112,12 @@ public class Exercise implements Parcelable {
         this.scores = scores;
     }
 
+    public void setExerciseId(String exerciseId) {
+        this.exerciseId = exerciseId;
+    }
+
+
+
     protected Exercise(Parcel in) {
         clef = in.readString();
         created_by = in.readString();
@@ -112,6 +135,7 @@ public class Exercise implements Parcelable {
         } else {
             scores = null;
         }
+        exerciseId = in.readString();
     }
 
     @Override
@@ -137,6 +161,7 @@ public class Exercise implements Parcelable {
             dest.writeByte((byte) (0x01));
             dest.writeList(scores);
         }
+        dest.writeString(exerciseId);
     }
 
     @SuppressWarnings("unused")

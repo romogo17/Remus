@@ -26,11 +26,11 @@
     <string name="A">A</string>
     <string name="B">B</string>
     <string name="CM">CM</string>
-    <string name="question_label">What is the tone of the note?</string>
+    <string name="question_label">Input the note</string>
     <string name="points_label">Points:</string>
-    <string name="num_answer_label">Answer:</string>
-    <string name="You_want_to_evaluate_this">You want to evaluate this?</string>
-    <string name="Rating">Rating</string>
-    <string name="Si">Yes</string>
-    <string name="No">No</string>
+    <string name="answer_progress_label">Progress:</string>
+    <string name="rate_alert_title">Do you want to rate this exercise?</string>
+    <string name="your_score_label">Your score is:</string>
+    <string name="your_time_label">Your time is:</string>
+    <string name="exercise_is">"Exercise is %1$s "</string>
 </resources>
