@@ -3,7 +3,6 @@ package com.una.optimizeprime.remus;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Exercise implements Parcelable {
@@ -13,19 +12,39 @@ public class Exercise implements Parcelable {
     private String key;
     private String name;
     private ArrayList<String> notes;
-    private float stars;
-
+    private ArrayList<Score> scores;
 
     public Exercise() {
     }
 
-    public Exercise(String clef, String created_by, String key, String name, ArrayList<String> notes, float stars) {
+    public Exercise(String clef, String created_by, String key, String name, ArrayList<String> notes, ArrayList<Score> scores) {
         this.clef = clef;
         this.created_by = created_by;
         this.key = key;
         this.name = name;
         this.notes = notes;
-        this.stars = stars;
+        this.scores = scores;
+    }
+
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "clef='" + clef + '\'' +
+                ", created_by='" + created_by + '\'' +
+                ", key='" + key + '\'' +
+                ", name='" + name + '\'' +
+                ", notes=" + notes +
+                ", scores=" + scores +
+                '}';
+    }
+
+    public float getStars(){
+        if(scores == null) return 0;
+        float sum = 0;
+        for(Score sc : scores){
+            sum += sc.getStars();
+        }
+        return sum/scores.size();
     }
 
     public String getClef() {
@@ -48,8 +67,32 @@ public class Exercise implements Parcelable {
         return notes;
     }
 
-    public float getStars() {
-        return stars;
+    public ArrayList<Score> getScores() {
+        return scores;
+    }
+
+    public void setClef(String clef) {
+        this.clef = clef;
+    }
+
+    public void setCreated_by(String created_by) {
+        this.created_by = created_by;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNotes(ArrayList<String> notes) {
+        this.notes = notes;
+    }
+
+    public void setScores(ArrayList<Score> scores) {
+        this.scores = scores;
     }
 
     protected Exercise(Parcel in) {
@@ -63,7 +106,12 @@ public class Exercise implements Parcelable {
         } else {
             notes = null;
         }
-        stars = in.readFloat();
+        if (in.readByte() == 0x01) {
+            scores = new ArrayList<Score>();
+            in.readList(scores, Score.class.getClassLoader());
+        } else {
+            scores = null;
+        }
     }
 
     @Override
@@ -83,7 +131,12 @@ public class Exercise implements Parcelable {
             dest.writeByte((byte) (0x01));
             dest.writeList(notes);
         }
-        dest.writeFloat(stars);
+        if (scores == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(scores);
+        }
     }
 
     @SuppressWarnings("unused")

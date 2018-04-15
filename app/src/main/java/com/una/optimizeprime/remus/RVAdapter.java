@@ -3,12 +3,15 @@ package com.una.optimizeprime.remus;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Handler;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -21,6 +24,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder
     List<Exercise> exercises;
     public Resources resources;
     public Context context;
+    // Allows to remember the last item shown on screen
+    private int lastPosition = -1;
 
     public static class ExerciseViewHolder extends RecyclerView.ViewHolder {
 
@@ -79,14 +84,29 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder
                 context.startActivity(intent);
             }
         });
+
+        // Here you apply the animation when the view is bound
+        setAnimation(holder.itemView, i);
+    }
+
+    /**
+     * Here is the key method to apply the animation
+     */
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        Log.d("DEBUG!", "the count is " + exercises.size());
         return exercises.size();
-
     }
 
     public int stringToResource(String s){

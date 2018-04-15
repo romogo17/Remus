@@ -1,0 +1,38 @@
+        exercises.add(new Exercise("G", "Roberto Mora", "CM", "Twinkle Twinkle Little Star",
+                new ArrayList<String>(){{
+                add("C");
+                add("C");
+                add("G");
+                add("G");
+                add("A");
+                add("A");
+                add("G");
+            }}, new ArrayList<Score>(){{
+                add(new Score(5000l, 100f, 3f, "z5gQykFhSZW10biwZTE6XdL0Tul1"));
+                add(new Score(4500l, 98f, 4f, "xvCsM0n7PXdmIgb3SS48BlpWoOB3"));
+        }}));
+        exercises.add(new Exercise("G", "Pedro Carazo", "CM", "C Major Scale",
+                new ArrayList<String>(){{
+                add("C");
+                add("D");
+                add("E");
+                add("F");
+                add("G");
+                add("A");
+                add("B");
+            }}, new ArrayList<Score>(){{
+            add(new Score(4500l, 100f, 5f, "z5gQykFhSZW10biwZTE6XdL0Tul1"));
+            add(new Score(3000l, 98f, 4f, "xvCsM0n7PXdmIgb3SS48BlpWoOB3"));
+        }}));
+        exercises.add(new Exercise("G", "Ketcha Hernandez", "CM", "Despacito",
+                new ArrayList<String>(){{
+                add("D");
+                add("D");
+                add("C");
+                add("C");
+            }}, new ArrayList<Score>(){{
+            add(new Score(2000l, 80f, 2f, "m40h8bNCznekahDA3mHlcBt1er93"));
+            add(new Score(3500l, 100f, 4f, "xvCsM0n7PXdmIgb3SS48BlpWoOB3"));
+        }}));
+
+        //exercises = new ArrayList<>();

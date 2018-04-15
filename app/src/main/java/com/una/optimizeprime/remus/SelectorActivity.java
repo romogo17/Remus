@@ -3,6 +3,7 @@ package com.una.optimizeprime.remus;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -23,8 +25,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class SelectorActivity extends AppCompatActivity implements View.OnClickListener {
+public class SelectorActivity extends AppCompatActivity implements View.OnClickListener, Observer {
 
     private DrawerLayout mDrawerLayout;
     private FirebaseAuth mAuth;
@@ -32,6 +36,8 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private NavigationView navigationView;
+    ArrayList<Exercise> exercises = new ArrayList<>();
+    Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,42 +56,24 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         // Update the Navigation drawer according to the user
         updateNavigationDrawer();
 
+        // Configure the recycler view
+        configureRecyclerView();
+
+        db = new Database();
+        db.subscribeToExercises(this);
+    }
+
+    private void configureRecyclerView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         // specify an adapter (see also next example)
-        List<Exercise> exercises = new ArrayList<>();
-        exercises.add(new Exercise("G", "Roberto Mora", "CM", "Twinkle Twinkle Little Star", new ArrayList<String>(){{
-                add("C");
-                add("C");
-                add("G");
-                add("G");
-                add("A");
-                add("A");
-                add("G");
-            }}, 3));
-        exercises.add(new Exercise("G", "Pedro Carazo", "CM", "C Major Scale", new ArrayList<String>(){{
-                add("C");
-                add("D");
-                add("E");
-                add("F");
-                add("G");
-                add("A");
-                add("B");
-            }}, 1));
-        exercises.add(new Exercise("G", "Ketcha Hernandez", "CM", "Despacito", new ArrayList<String>(){{
-                add("D");
-                add("D");
-                add("C");
-                add("C");
-            }}, 2));
+        exercises = new ArrayList<>();
 
         mAdapter = new RVAdapter(exercises, getResources(), getApplicationContext());
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        //mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
-
-        mAdapter.notifyDataSetChanged();
     }
 
     @NonNull
@@ -150,6 +138,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
+
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
     }
@@ -189,5 +178,16 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
 //                startActivity(intent);
 //                break;
         }
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        // Clear the old dataset
+        this.exercises.clear();
+        // Add all the new ones
+        this.exercises.addAll(db.getExercises());
+        // Notify the change to the adapter
+        mAdapter.notifyDataSetChanged();
+        //db.writeExercise(exercises.get(0));
     }
 }
