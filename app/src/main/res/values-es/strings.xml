@@ -30,4 +30,8 @@
     <string name="question_label">¿Cual es el tono de la nota?</string>
     <string name="points_label">Puntos:</string>
     <string name="num_answer_label">Respondidas:</string>
+    <string name="You_want_to_evaluate_this">Usted quiere evaluar esto?</string>
+    <string name="Rating">Evaluar</string>
+    <string name="Si">Si</string>
+    <string name="No">No</string>
 </resources>
