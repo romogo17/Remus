@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "996677636919-i4rj03p4lnjuipc9n8namr4mec3qo4tc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.una.optimizeprime.remus",
+            "certificate_hash": "c9d8cc887df714242c6ca63598f0a93d7c096f04"
+          }
+        },
+        {
           "client_id": "996677636919-r3q7bl3fb0jeqofno9mm2qsouq4cplbr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

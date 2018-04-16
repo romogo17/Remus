@@ -5,7 +5,6 @@
     <string name="sign_out">Salir</string>
     <string name="disconnect">Desconectarse</string>
     <string name="loading">Cargando…</string>
-    <string name="desc_firebase_lockup">Logo de Firebase y nombre</string>
     <string name="search">Buscar Ejercicio</string>
     <string name="remus_icon">Icono de Remus</string>
     <string name="use_without_account">Usar sin cuenta</string>
