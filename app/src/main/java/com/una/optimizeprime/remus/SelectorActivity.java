@@ -1,8 +1,11 @@
 package com.una.optimizeprime.remus;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -114,6 +117,9 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
                                 // Starts a new activity of SignInActivity class
                                 intent = new Intent(getApplicationContext(), AboutActivity.class);
                                 startActivity(intent);
+                                break;
+                            case R.id.nav_video:
+                                watchYoutubeVideo(getApplicationContext(), "stxmJ8qeCuM");
                         }
 
                         return true;
@@ -140,6 +146,17 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
                 }
         );
         return navigationView;
+    }
+
+    public static void watchYoutubeVideo(Context context, String id){
+        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+        Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://www.youtube.com/watch?v=" + id));
+        try {
+            context.startActivity(appIntent);
+        } catch (ActivityNotFoundException ex) {
+            context.startActivity(webIntent);
+        }
     }
 
     private void setToolbar() {

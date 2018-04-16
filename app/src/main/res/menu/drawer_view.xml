@@ -17,5 +17,9 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_person_black_24dp"
             android:title="@string/nav_authors" />
+        <item
+            android:id="@+id/nav_video"
+            android:icon="@drawable/ic_ondemand_video_black_24dp"
+            android:title="Video" />
     </group>
 </menu>

@@ -28,6 +28,8 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".AboutActivity"></activity>
+
+
     </application>
 
 </manifest>
