@@ -290,4 +290,13 @@ public class ExerciseActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+        // Return to the selector class
+        Intent intent = new Intent(getApplicationContext(), SelectorActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

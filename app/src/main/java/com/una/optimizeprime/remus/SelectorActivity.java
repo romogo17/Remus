@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.common.SignInButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -228,4 +229,5 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         // Notify the change to the adapter
         mAdapter.notifyDataSetChanged();
     }
+
 }
