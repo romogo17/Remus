@@ -53,4 +53,8 @@
     <string name="emptyexercisename_error">Debe ingresar un nombre para el ejercicio</string>
     <string name="empotynotes_error">Debe ingresar al menos 5 notas en su ejercicio</string>
     <string name="toomanynotes_error">El largo máximo de un ejercicio son 75 notas</string>
+    <string name="back_btn">Atras</string>
+    <string name="deletelast_btn">Eliminar ultima nota</string>
+    <string name="emptynoteslist_error">La lista de notas esta vacía</string>
+    <string name="confirm_new_exercise">Esto insertará un nuevo ejercicio en nuestra base de datos. Esta acción no es reversible</string>
 </resources>

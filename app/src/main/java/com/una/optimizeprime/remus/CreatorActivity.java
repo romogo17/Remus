@@ -1,7 +1,10 @@
 package com.una.optimizeprime.remus;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +29,8 @@ public class CreatorActivity extends AppCompatActivity implements View.OnClickLi
 
         findViewById(R.id.create_generalinfo).setVisibility(View.VISIBLE);
         findViewById(R.id.create_notes).setVisibility(View.GONE);
+        findViewById(R.id.btn_deletelast).setVisibility(View.GONE);
+        findViewById(R.id.btn_back).setVisibility(View.GONE);
 
         findViewById(R.id.btn_action).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +43,8 @@ public class CreatorActivity extends AppCompatActivity implements View.OnClickLi
                         return;
                     }
                     findViewById(R.id.create_generalinfo).setVisibility(View.GONE);
+                    findViewById(R.id.btn_deletelast).setVisibility(View.VISIBLE);
+                    findViewById(R.id.btn_back).setVisibility(View.VISIBLE);
                     findViewById(R.id.create_notes).setVisibility(View.VISIBLE);
                     ((Button) findViewById(R.id.btn_action)).setText(R.string.finish_label);
 
@@ -53,8 +60,7 @@ public class CreatorActivity extends AppCompatActivity implements View.OnClickLi
                         return;
                     }
                     Exercise newExercise = new Exercise(getSelectedClef(), FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), getSelectedKey(), exName, notes, null);
-                    Database.getInstance().writeExercise(newExercise);
-                    step = 0;
+                    confirmInsertion(newExercise);
                 }
             }
         });
@@ -65,17 +71,64 @@ public class CreatorActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.btn_g).setOnClickListener(this);
         findViewById(R.id.btn_a).setOnClickListener(this);
         findViewById(R.id.btn_b).setOnClickListener(this);
+
+        findViewById(R.id.btn_back).setOnClickListener(this);
+        findViewById(R.id.btn_deletelast).setOnClickListener(this);
+
+    }
+
+    private void confirmInsertion(final Exercise ex){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.continue_confirmation)
+                .setMessage(R.string.confirm_new_exercise)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Database.getInstance().writeExercise(ex);
+                        step = 0;
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+//                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     @Override
     public void onClick(View view) {
+        if(view.getId() == R.id.btn_back){
+            findViewById(R.id.create_generalinfo).setVisibility(View.VISIBLE);
+            findViewById(R.id.btn_deletelast).setVisibility(View.GONE);
+            findViewById(R.id.btn_back).setVisibility(View.GONE);
+            findViewById(R.id.create_notes).setVisibility(View.GONE);
+            ((Button) findViewById(R.id.btn_action)).setText(R.string.next_label);
+
+            ((TextView) findViewById(R.id.heading_text)).setText(getText(R.string.nav_create));
+            step = 0;
+        }
+        if(view.getId() == R.id.btn_deletelast){
+            if(!notes.isEmpty()){
+                notes.remove(notes.size() - 1);
+                ((TextView) findViewById(R.id.allnotes)).setText(getLocaleNoteArray());
+            } else {
+                Snackbar.make(findViewById(R.id.main_creator), R.string.emptynoteslist_error, Snackbar.LENGTH_LONG)
+                        .setAction(android.R.string.yes, null)
+                        .show();
+                return;
+            }
+        }
+
+
+
         if (notes.size() > 75) {
             Snackbar.make(findViewById(R.id.main_creator), R.string.toomanynotes_error, Snackbar.LENGTH_LONG)
                     .setAction(android.R.string.yes, null)
                     .show();
             return;
         }
-
         String newNote = "";
         switch (view.getId()) {
             case R.id.btn_c:

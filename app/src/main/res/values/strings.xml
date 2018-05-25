@@ -53,4 +53,8 @@
     <string name="emptyexercisename_error">You must enter an exercise name</string>
     <string name="empotynotes_error">You must enter at least 5 notes in your exercise</string>
     <string name="toomanynotes_error">The maximun exercise length is 75 notes</string>
+    <string name="back_btn">Back</string>
+    <string name="deletelast_btn">Delete last note</string>
+    <string name="emptynoteslist_error">Notes list is empty</string>
+    <string name="confirm_new_exercise">This will insert a new exercise into our database. This action is not reversible</string>
 </resources>
