@@ -4,240 +4,254 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        card_view:cardBackgroundColor="@color/grey_100"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="2dp"
-        card_view:contentPadding="10dp">
+        android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvro"
-                android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="Roberto Mora Gonzalez"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
-                android:textColor="@color/colorPrimaryDark"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                tools:targetApi="lollipop" />
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                card_view:cardBackgroundColor="@color/grey_100"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:contentPadding="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="16dp"
-                android:text="402340175"
-                android:textColor="@color/grey_200"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                card_view:layout_constraintStart_toEndOf="@+id/textView6ro"
-                card_view:layout_constraintTop_toBottomOf="@+id/tvro"
-                tools:text="402340175"
-                android:layout_marginLeft="52dp" />
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView6ro"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/cedula_label"
-                android:textSize="18sp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/tvro" />
+                    <TextView
+                        android:id="@+id/tvro"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:text="Roberto Mora Gonzalez"
+                        android:textAppearance="@android:style/TextAppearance.Material.Large"
+                        android:textColor="@color/colorPrimaryDark"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        tools:targetApi="lollipop" />
 
-            <TextView
-                android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="52dp"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginTop="16dp"
+                        android:text="402340175"
+                        android:textColor="@color/grey_200"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        card_view:layout_constraintStart_toEndOf="@+id/textView6ro"
+                        card_view:layout_constraintTop_toBottomOf="@+id/tvro"
+                        tools:text="402340175" />
+
+                    <TextView
+                        android:id="@+id/textView6ro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/cedula_label"
+                        android:textSize="18sp"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/tvro" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Heredia, Costa Rica"
+                        android:textSize="18sp"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/textView6ro" />
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="24dp"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        card_view:srcCompat="@drawable/android_red"
+                        tools:ignore="VectorDrawableCompat" />
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="Heredia, Costa Rica"
-                android:textSize="18sp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/textView6ro" />
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                card_view:cardBackgroundColor="@color/grey_100"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:contentPadding="10dp">
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginTop="24dp"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                card_view:srcCompat="@drawable/android_red"
-                tools:ignore="VectorDrawableCompat"
-                android:layout_marginRight="24dp" />
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+                    <TextView
+                        android:id="@+id/tvket"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:text="Ketcha Hernandez Vargas"
+                        android:textAppearance="@android:style/TextAppearance.Material.Large"
+                        android:textColor="@color/colorPrimaryDark"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        tools:targetApi="lollipop" />
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        card_view:cardBackgroundColor="@color/grey_100"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="2dp"
-        card_view:contentPadding="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="52dp"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginTop="16dp"
+                        android:text="116450900"
+                        android:textColor="@color/grey_200"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        card_view:layout_constraintStart_toEndOf="@+id/textView6ket"
+                        card_view:layout_constraintTop_toBottomOf="@+id/tvket"
+                        tools:text="116450900" />
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/textView6ket"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/cedula_label"
+                        android:textSize="18sp"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/tvket" />
 
-            <TextView
-                android:id="@+id/tvket"
-                android:layout_width="200dp"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Heredia, Costa Rica"
+                        android:textSize="18sp"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/textView6ket" />
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="24dp"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        card_view:srcCompat="@drawable/android_blue"
+                        tools:ignore="VectorDrawableCompat" />
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="Ketcha Hernandez Vargas"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
-                android:textColor="@color/colorPrimaryDark"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                tools:targetApi="lollipop"
-                android:layout_marginLeft="24dp" />
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                card_view:cardBackgroundColor="@color/grey_100"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:contentPadding="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="16dp"
-                android:text="116450900"
-                android:textColor="@color/grey_200"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                card_view:layout_constraintStart_toEndOf="@+id/textView6ket"
-                card_view:layout_constraintTop_toBottomOf="@+id/tvket"
-                tools:text="116450900"
-                android:layout_marginLeft="52dp" />
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView6ket"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/cedula_label"
-                android:textSize="18sp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/tvket" />
+                    <TextView
+                        android:id="@+id/tveve"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:text="Evelin Navarro Guadamuz"
+                        android:textAppearance="@android:style/TextAppearance.Material.Large"
+                        android:textColor="@color/colorPrimaryDark"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        tools:targetApi="lollipop" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="Heredia, Costa Rica"
-                android:textSize="18sp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/textView6ket" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="52dp"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginTop="16dp"
+                        android:text="504040231"
+                        android:textColor="@color/grey_200"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        card_view:layout_constraintStart_toEndOf="@+id/textView6"
+                        card_view:layout_constraintTop_toBottomOf="@+id/tveve"
+                        tools:text="504040231" />
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginTop="24dp"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                card_view:srcCompat="@drawable/android_blue"
-                tools:ignore="VectorDrawableCompat"
-                android:layout_marginRight="24dp" />
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/cedula_label"
+                        android:textSize="18sp"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/tveve" />
 
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Heredia, Costa Rica"
+                        android:textSize="18sp"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        card_view:cardBackgroundColor="@color/grey_100"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="2dp"
-        card_view:contentPadding="10dp">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="24dp"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        card_view:srcCompat="@drawable/android_yellow"
+                        tools:ignore="VectorDrawableCompat" />
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
 
-            <TextView
-                android:id="@+id/tveve"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="Evelin Navarro Guadamuz"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
-                android:textColor="@color/colorPrimaryDark"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                tools:targetApi="lollipop"
-                android:layout_marginLeft="24dp" />
+        </LinearLayout>
+    </ScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="16dp"
-                android:text="504040231"
-                android:textColor="@color/grey_200"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                card_view:layout_constraintStart_toEndOf="@+id/textView6"
-                card_view:layout_constraintTop_toBottomOf="@+id/tveve"
-                tools:text="504040231"
-                android:layout_marginLeft="52dp" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/cedula_label"
-                android:textSize="18sp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/tveve" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="Heredia, Costa Rica"
-                android:textSize="18sp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginTop="24dp"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                card_view:srcCompat="@drawable/android_yellow"
-                tools:ignore="VectorDrawableCompat"
-                android:layout_marginRight="24dp" />
-
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
 </LinearLayout>

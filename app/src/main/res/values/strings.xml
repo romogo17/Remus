@@ -25,6 +25,12 @@
     <string name="A">A</string>
     <string name="B">B</string>
     <string name="CM">CM</string>
+    <string name="DM">DM</string>
+    <string name="EM">EM</string>
+    <string name="FM">FM</string>
+    <string name="GM">GM</string>
+    <string name="AM">AM</string>
+    <string name="BM">BM</string>
     <string name="question_label">Input the note</string>
     <string name="points_label">Points:</string>
     <string name="answer_progress_label">Progress:</string>
@@ -34,4 +40,17 @@
     <string name="exercise_is">"Exercise is %1$s "</string>
     <string name="cedula_label">Identification:</string>
     <string name="nav_authors">Authors</string>
+    <string name="nav_create">New exercise</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="exercisename_label">Exercise name</string>
+    <string name="exerciseclef_label">Exercise Clef</string>
+    <string name="exercisekey_label">Exercise Key</string>
+    <string name="next_label">Next</string>
+    <string name="exercisenotes_label">Exercise Notes</string>
+    <string name="finish_label">Finish</string>
+    <string name="exercisenotes_instructions">Enter up to 50 notes one by one and then press on Finish to end the note input</string>
+    <string name="empty">Empty</string>
+    <string name="emptyexercisename_error">You must enter an exercise name</string>
+    <string name="empotynotes_error">You must enter at least 5 notes in your exercise</string>
+    <string name="toomanynotes_error">The maximun exercise length is 75 notes</string>
 </resources>

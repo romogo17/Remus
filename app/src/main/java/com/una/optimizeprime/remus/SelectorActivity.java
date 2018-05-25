@@ -114,6 +114,11 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
                                 startActivity(intent);
                                 finish();
                                 break;
+                            case R.id.nav_create:
+                                // Starts a new activity of SignInActivity class
+                                intent = new Intent(getApplicationContext(), CreatorActivity.class);
+                                startActivity(intent);
+                                break;
                             case R.id.nav_about:
                                 // Starts a new activity of SignInActivity class
                                 intent = new Intent(getApplicationContext(), AboutActivity.class);
@@ -179,10 +184,13 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
             // There is a user logged in
             navigationView.getMenu().findItem(R.id.nav_sign_in).setVisible(false);
             headerTitle.setText(mAuth.getCurrentUser().getDisplayName());
+            navigationView.getMenu().findItem(R.id.nav_create).setVisible(true);
+
 
         } else {
             navigationView.getMenu().findItem(R.id.nav_sign_out).setVisible(false);
             headerTitle.setText(getString(R.string.guest_display_name));
+            navigationView.getMenu().findItem(R.id.nav_create).setVisible(false);
         }
     }
 
@@ -202,7 +210,8 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
             if (mDrawerLayout.isDrawerOpen(navigationView)) {
                 mDrawerLayout.closeDrawers();
             } else {
-                mDrawerLayout.openDrawer(Gravity.START);
+                finish();
+                //mDrawerLayout.openDrawer(Gravity.START);
             }
             return true;
         }

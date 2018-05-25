@@ -26,10 +26,11 @@
         <activity
             android:name=".ExerciseActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".AboutActivity"></activity>
-
-
+        <activity android:name=".AboutActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".CreatorActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

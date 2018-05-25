@@ -26,6 +26,12 @@
     <string name="A">La</string>
     <string name="B">Si</string>
     <string name="CM">DoM</string>
+    <string name="DM">ReM</string>
+    <string name="EM">MiM</string>
+    <string name="FM">FaM</string>
+    <string name="GM">SolM</string>
+    <string name="AM">LaM</string>
+    <string name="BM">SiM</string>
     <string name="question_label">Seleccione la nota</string>
     <string name="points_label">Puntos:</string>
     <string name="answer_progress_label">Progreso:</string>
@@ -35,4 +41,16 @@
     <string name="exercise_is">El ejercicio es %1$s</string>
     <string name="cedula_label">Cédula:</string>
     <string name="nav_authors">Autores</string>
+    <string name="nav_create">Nuevo ejercicio</string>
+    <string name="exercisename_label">Nombre del ejercicio</string>
+    <string name="exerciseclef_label">Clave del Ejercicio</string>
+    <string name="exercisekey_label">Tono del Ejercicio</string>
+    <string name="next_label">Siguiente</string>
+    <string name="exercisenotes_label">Notas del Ejercicio</string>
+    <string name="finish_label">Finalizar</string>
+    <string name="exercisenotes_instructions">Ingrese hasta 50 notas una por una y luego presione Finalizar para terminar el ingreso de notas</string>
+    <string name="empty">Vacio</string>
+    <string name="emptyexercisename_error">Debe ingresar un nombre para el ejercicio</string>
+    <string name="empotynotes_error">Debe ingresar al menos 5 notas en su ejercicio</string>
+    <string name="toomanynotes_error">El largo máximo de un ejercicio son 75 notas</string>
 </resources>
