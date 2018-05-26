@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,8 +23,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.android.gms.common.SignInButton;
@@ -34,7 +37,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class SelectorActivity extends AppCompatActivity implements View.OnClickListener, Observer {
+public class SelectorActivity extends AppCompatActivity implements View.OnClickListener, Observer, SearchView.OnQueryTextListener {
 
     private DrawerLayout mDrawerLayout;
     private FirebaseAuth mAuth;
@@ -44,7 +47,10 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     private NavigationView navigationView;
     ArrayList<Exercise> exercises = new ArrayList<>();
     Database db;
-
+    Toolbar toolbar;
+    RecyclerView recyclerView;
+    RVAdapter adapter;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +74,8 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
 
         db = Database.getInstance();
         db.subscribeToExercises(this);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
     private void configureRecyclerView() {
@@ -239,4 +247,30 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         mAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_view,menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        //searchView.setOnQueryTextListener(this); //
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        s = s.toLowerCase();
+        ArrayList<Exercise> newList = new ArrayList<>();
+        for(Exercise exercise : exercises){
+            String name = exercise.getName().toLowerCase();
+            if(name.contains(s))
+                newList.add(exercise);
+        }
+        adapter.setFilter(newList);
+        return true;
+    }
 }

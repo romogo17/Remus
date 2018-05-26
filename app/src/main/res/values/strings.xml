@@ -57,4 +57,5 @@
     <string name="deletelast_btn">Delete last note</string>
     <string name="emptynoteslist_error">Notes list is empty</string>
     <string name="confirm_new_exercise">This will insert a new exercise into our database. This action is not reversible</string>
+    <string name="hola">hola</string>
 </resources>

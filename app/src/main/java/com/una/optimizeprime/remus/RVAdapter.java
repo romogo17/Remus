@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder> {
@@ -125,6 +126,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder
             case "CM": return R.string.CM;
         }
         return R.string.C;
+    }
+
+    public void setFilter(ArrayList<Exercise> newList){
+        exercises = new ArrayList<>();
+        exercises.addAll(newList);
+        notifyDataSetChanged();
     }
 
 }
