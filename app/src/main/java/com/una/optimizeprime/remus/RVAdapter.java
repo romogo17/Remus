@@ -139,4 +139,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder
         notifyDataSetChanged();
     }
 
+    //This method will filter the list
+    //here we are passing the filtered data
+    //and assigning it to the list with notifydatasetchanged method
+
+    public void filterList(ArrayList<Exercise> filterdNames) {
+        this.exercises = filterdNames;
+        notifyDataSetChanged();
+    }
 }

@@ -1,8 +1,10 @@
 package com.una.optimizeprime.remus;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -20,12 +22,19 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -37,7 +46,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class SelectorActivity extends AppCompatActivity implements View.OnClickListener, Observer, SearchView.OnQueryTextListener {
+public class SelectorActivity extends AppCompatActivity implements View.OnClickListener, Observer {
 
     private DrawerLayout mDrawerLayout;
     private FirebaseAuth mAuth;
@@ -47,10 +56,13 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     private NavigationView navigationView;
     ArrayList<Exercise> exercises = new ArrayList<>();
     Database db;
-    Toolbar toolbar;
-    RecyclerView recyclerView;
-    RVAdapter adapter;
+
     RecyclerView.LayoutManager layoutManager;
+    static EditText Texto_01;
+
+    ArrayList<Exercise> exercisesS;
+    EditText editTextSearch;
+    RVAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +87,6 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         db = Database.getInstance();
         db.subscribeToExercises(this);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
     private void configureRecyclerView() {
@@ -89,6 +100,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerView.setLayoutManager(mLayoutManager);
         //mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
+
     }
 
     @NonNull
@@ -208,9 +220,76 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            case R.id.action_search:
+                openSearch();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void openSearch() {
+        Texto_01 =  new EditText(this);
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Digite el nombre del ejercicio:");
+        Texto_01.setText("");
+        Texto_01.selectAll();
+        builder1.setView(Texto_01);
+
+        builder1.setCancelable(true);
+        builder1.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        Texto_01.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                //mAdapter.getFilter().filter(s);
+                                //adapter.setFilter(exercises);
+                                ArrayList<Exercise> newList = new ArrayList<>();
+                                for(Exercise exercise : exercises){
+                                    String name = exercise.getName().toLowerCase();
+                                    if(name.contains(s))
+                                        newList.add(exercise);
+                                }
+                                adapter.setFilter(newList);
+
+                            }
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                filter(s.toString());
+                            }
+                        });
+                    }
+                });
+
+        builder1.setNegativeButton("Cancelar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Mensaje("Cancelado");
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+
+    }
+
+    public void Mensaje(String msg){
+        View v1 = getWindow().getDecorView().getRootView();
+        AlertDialog.Builder builder1 = new AlertDialog.Builder( v1.getContext());
+        builder1.setMessage(msg);
+        builder1.setCancelable(true);
+        builder1.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {} });
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+        ;};
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
@@ -249,28 +328,28 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_view,menu);
-        MenuItem menuItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        //searchView.setOnQueryTextListener(this); //
+
+        getMenuInflater().inflate(R.menu.search_view, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
         return true;
+
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        return false;
-    }
+    private void filter(String text) {
 
-    @Override
-    public boolean onQueryTextChange(String s) {
-        s = s.toLowerCase();
-        ArrayList<Exercise> newList = new ArrayList<>();
-        for(Exercise exercise : exercises){
+        ArrayList<Exercise> filterdNames = new ArrayList<>();
+
+        for (Exercise exercise : exercises) {
+            //if the existing elements contains the search input
             String name = exercise.getName().toLowerCase();
-            if(name.contains(s))
-                newList.add(exercise);
+            if(name.contains(text)){
+                //adding the element to filtered list
+                filterdNames.add(exercise);
+            }
         }
-        adapter.setFilter(newList);
-        return true;
+        adapter.filterList(filterdNames);
     }
+
+
 }
