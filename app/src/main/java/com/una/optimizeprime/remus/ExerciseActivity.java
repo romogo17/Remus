@@ -36,6 +36,8 @@ public class ExerciseActivity extends AppCompatActivity implements View.OnClickL
         add("G");
     }};
     String note;
+    String clef;
+    String key;
     ArrayList<String> notes;
     Button option_1;
     Button option_2;
@@ -44,6 +46,7 @@ public class ExerciseActivity extends AppCompatActivity implements View.OnClickL
     TextView points;
     TextView num_answers;
     ImageView note_image;
+    ImageView clef_image;
     int index = 0;
     int score = 0;
     int count = 0;
@@ -65,6 +68,7 @@ public class ExerciseActivity extends AppCompatActivity implements View.OnClickL
         points = findViewById(R.id.points);
         num_answers = findViewById(R.id.num_answer);
         note_image = findViewById(R.id.note_image);
+        clef_image = findViewById(R.id.clef_image);
 
         notes = exercise.getNotes();
         total = notes.size();
@@ -73,6 +77,9 @@ public class ExerciseActivity extends AppCompatActivity implements View.OnClickL
         String aux;
         aux = count + "/" + total;
         num_answers.setText(aux);
+        clef = exercise.getClef();
+        key = exercise.getKey();
+        clef_image.setImageResource(stringToDrawableClef(clef+key));
 
         findViewById(R.id.option_1).setOnClickListener(this);
         findViewById(R.id.option_2).setOnClickListener(this);
@@ -153,7 +160,10 @@ public class ExerciseActivity extends AppCompatActivity implements View.OnClickL
 
     private void play(int i) {
         note = notes.get(i);
-        note_image.setImageResource(stringToDrawable(note));
+        if(clef.equals("G"))
+            note_image.setImageResource(stringToDrawableNoteClefG(note));
+        else
+            note_image.setImageResource(stringToDrawableNoteClefF(note));
         createOptions();
     }
 
@@ -179,26 +189,67 @@ public class ExerciseActivity extends AppCompatActivity implements View.OnClickL
     private void putButtonText(int pos, String text) {
         switch (pos) {
             case 1:
-                option_1.setText(stringToResource(text));
+                option_1.setText(stringNote(text));
                 option_1.setTag(text);
                 break;
             case 2:
-                option_2.setText(stringToResource(text));
+                option_2.setText(stringNote(text));
                 option_2.setTag(text);
                 break;
             case 3:
-                option_3.setText(stringToResource(text));
+                option_3.setText(stringNote(text));
                 option_3.setTag(text);
                 break;
             case 4:
-                option_4.setText(stringToResource(text));
+                option_4.setText(stringNote(text));
                 option_4.setTag(text);
                 break;
         }
     }
 
+    private int stringNote(String text){
+        if(key.equals("CM"))
+            return stringToResource(text);
+        if(key.equals("DM")){
+            if(text.equals("F") || text.equals("C")){
+                text += "s";
+                return stringToResource(text);
+            }else
+                return stringToResource(text);
+        }
+        if(key.equals("EM")){
+            if(text.equals("F") || text.equals("C") || text.equals("G") || text.equals("D")){
+                text += "s";
+                return stringToResource(text);
+            }else
+                return stringToResource(text);
+        }
+        if(key.equals("GM")){
+            if(text.equals("F")){
+                text += "s";
+                return stringToResource(text);
+            }else
+                return stringToResource(text);
+        }
+        if(key.equals("AM")){
+            if(text.equals("F") || text.equals("C") || text.equals("G")){
+                text += "s";
+                return stringToResource(text);
+            }else
+                return stringToResource(text);
+        }
+        if(key.equals("FM")){
+            if(text.equals("B")){
+                text += "b";
+                return stringToResource(text);
+            }else
+                return stringToResource(text);
+        }
+        return 0;
+    }
 
-    public int stringToDrawable(String s) {
+
+    public int stringToDrawableNoteClefG(String s) {
         switch (s) {
             case "C":
                 return R.drawable.note_gclef_c;
@@ -218,6 +269,56 @@ public class ExerciseActivity extends AppCompatActivity implements View.OnClickL
         return R.drawable.note_gclef_c;
     }
 
+    public int stringToDrawableNoteClefF(String s) {
+        switch (s) {
+            case "C":
+                return R.drawable.note_fclef_c;
+            case "D":
+                return R.drawable.note_fclef_d;
+            case "E":
+                return R.drawable.note_fclef_e;
+            case "F":
+                return R.drawable.note_fclef_f;
+            case "G":
+                return R.drawable.note_fclef_g;
+            case "A":
+                return R.drawable.note_fclef_a;
+            case "B":
+                return R.drawable.note_fclef_b;
+        }
+        return R.drawable.note_fclef_c;
+    }
+
+    public int stringToDrawableClef(String s) {
+        switch (s) {
+            case "GCM":
+                return R.drawable.gclef_cmajor;
+            case "GDM":
+                return R.drawable.gclef_dmajor;
+            case "GEM":
+                return R.drawable.gclef_emajor;
+            case "GFM":
+                return R.drawable.gclef_fmajor;
+            case "GGM":
+                return R.drawable.gclef_gmajor;
+            case "GAM":
+                return R.drawable.gclef_amajor;
+            case "FCM":
+                return R.drawable.fclef_cmajor;
+            case "FDM":
+                return R.drawable.fclef_dmajor;
+            case "FEM":
+                return R.drawable.fclef_emajor;
+            case "FFM":
+                return R.drawable.fclef_fmajor;
+            case "FGM":
+                return R.drawable.fclef_gmajor;
+            case "FAM":
+                return R.drawable.fclef_amajor;
+        }
+        return R.drawable.gclef_cmajor;
+    }
+
     public int stringToResource(String s) {
         switch (s) {
             case "C":
@@ -234,6 +335,16 @@ public class ExerciseActivity extends AppCompatActivity implements View.OnClickL
                 return R.string.A;
             case "B":
                 return R.string.B;
+            case "Fs":
+                return R.string.Fs;
+            case "Cs":
+                return R.string.Cs;
+            case "Gs":
+                return R.string.Gs;
+            case "Ds":
+                return R.string.Ds;
+            case "Bb":
+                return R.string.Bb;
         }
         return R.string.C;
     }

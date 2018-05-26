@@ -25,6 +25,11 @@
     <string name="G">Sol</string>
     <string name="A">La</string>
     <string name="B">Si</string>
+    <string name="Fs">Fa#</string>
+    <string name="Cs">Do#</string>
+    <string name="Gs">Sol#</string>
+    <string name="Ds">Re#</string>
+    <string name="Bb">Si♭</string>
     <string name="CM">DoM</string>
     <string name="DM">ReM</string>
     <string name="EM">MiM</string>

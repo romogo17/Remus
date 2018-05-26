@@ -24,6 +24,11 @@
     <string name="G">G</string>
     <string name="A">A</string>
     <string name="B">B</string>
+    <string name="Fs">F#</string>
+    <string name="Cs">C#</string>
+    <string name="Gs">G#</string>
+    <string name="Ds">D#</string>
+    <string name="Bb">B♭</string>
     <string name="CM">CM</string>
     <string name="DM">DM</string>
     <string name="EM">EM</string>
