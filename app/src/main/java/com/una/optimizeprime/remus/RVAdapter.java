@@ -124,6 +124,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder
             case "A": return R.string.A;
             case "B": return R.string.B;
             case "CM": return R.string.CM;
+            case "DM": return R.string.DM;
+            case "EM": return R.string.EM;
+            case "FM": return R.string.FM;
+            case "GM": return R.string.GM;
+            case "AM": return R.string.AM;
         }
         return R.string.C;
     }
