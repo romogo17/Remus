@@ -28,6 +28,18 @@ public class Exercise implements Parcelable {
         this.exerciseId = null;
     }
 
+    public Exercise clone(){
+        Exercise newOne = new Exercise();
+        newOne.setClef(this.clef);
+        newOne.setCreated_by(this.created_by);
+        newOne.setKey(this.key);
+        newOne.setName(this.name);
+        newOne.setNotes(this.notes);
+        newOne.setScores(this.scores);
+        newOne.setExerciseId(this.exerciseId);
+        return newOne;
+    }
+
     @Override
     public String toString() {
         return "Exercise{" +

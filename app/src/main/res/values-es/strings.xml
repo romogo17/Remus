@@ -62,4 +62,5 @@
     <string name="deletelast_btn">Eliminar ultima nota</string>
     <string name="emptynoteslist_error">La lista de notas esta vacía</string>
     <string name="confirm_new_exercise">Esto insertará un nuevo ejercicio en nuestra base de datos. Esta acción no es reversible</string>
+    <string name="keyword">Ingrese su palabra de busqueda</string>
 </resources>
