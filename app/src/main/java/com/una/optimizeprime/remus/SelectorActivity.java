@@ -59,7 +59,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     private NavigationView navigationView;
     ArrayList<Exercise> originalExercises = new ArrayList<>();
     ArrayList<Exercise> exercises = new ArrayList<>();
-    ArrayList<Exercise> newList = new ArrayList<>();
+    //ArrayList<Exercise> newList = new ArrayList<>();
 
     Database db;
 
@@ -176,7 +176,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         return navigationView;
     }
 
-    public static void watchYoutubeVideo(Context context, String id){
+    public static void watchYoutubeVideo(Context context, String id) {
         Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
         Intent webIntent = new Intent(Intent.ACTION_VIEW,
                 Uri.parse("http://www.youtube.com/watch?v=" + id));
@@ -231,7 +231,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
 
     private void openSearch() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Title");
+        builder.setTitle(getText(R.string.keyword));
 
         // Set up the input
         final EditText input = new EditText(this);
@@ -244,7 +244,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                    filter(m_Text = input.getText().toString());
+                filter(m_Text = input.getText().toString());
 
             }
         });
@@ -257,17 +257,22 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         builder.show();
     }
 
-    public void Mensaje(String msg){
+    public void Mensaje(String msg) {
         View v1 = getWindow().getDecorView().getRootView();
-        AlertDialog.Builder builder1 = new AlertDialog.Builder( v1.getContext());
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(v1.getContext());
         builder1.setMessage(msg);
         builder1.setCancelable(true);
         builder1.setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {} });
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
         AlertDialog alert11 = builder1.create();
         alert11.show();
-        ;};
+        ;
+    }
+
+    ;
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
@@ -301,6 +306,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         //OriginalDates
         //this.originalExercises.addAll(db.getExercises());
         // Add all the new ones
+        this.originalExercises.addAll(db.getExercises());
         this.exercises.addAll(db.getExercises());
         // Notify the change to the adapter
         mAdapter.notifyDataSetChanged();
@@ -317,21 +323,20 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void filter(String text) {
-
-        if(text.length() == 0){
-            this.originalExercises.addAll(db.getExercises());
-        }else{
-            final  String name = text.toString().toLowerCase().trim();
-            for (final Exercise exercise : exercises) {
-                //if the existing elements contains the search input
-                if(exercise.getName().toLowerCase().contains(name)) {
+        this.exercises.clear();
+        if (text.isEmpty()) {
+            this.exercises.addAll(originalExercises);
+            //this.originalExercises.addAll(db.getExercises());
+        } else {
+            final String name = text.toLowerCase().trim();
+            for (Exercise ex : originalExercises) {
+                if (ex.getName().toLowerCase().contains(name)
+                        || ex.getCreated_by().toLowerCase().contains(name)) {
                     //adding the element to filtered list
-                    newList.add(exercise);
+                    exercises.add(ex);
                 }
             }
         }
-        exercises.clear();
-        exercises.addAll(newList);
         mAdapter.notifyDataSetChanged();
     }
 
