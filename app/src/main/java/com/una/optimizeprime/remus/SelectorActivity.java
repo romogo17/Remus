@@ -64,11 +64,8 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     Database db;
 
     RecyclerView.LayoutManager layoutManager;
-    static EditText Texto_01;
 
     private String m_Text;
-
-    RVAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,15 +95,14 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     private void configureRecyclerView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         // specify an adapter (see also next example)
-        exercises = new ArrayList<>();//originalExercises = new ArrayList<>();
+        exercises = new ArrayList<>();
         mAdapter = new RVAdapter(exercises, getResources(), getApplicationContext(), this);
-        
+
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         //mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
-        originalExercises = exercises;
     }
 
     @NonNull
@@ -247,11 +243,9 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(m_Text == ""){
-                    exercises.addAll(originalExercises);
-                }else{
+
                     filter(m_Text = input.getText().toString());
-                }
+
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -324,13 +318,16 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
 
     private void filter(String text) {
 
-        for (Exercise exercise : exercises) {
-            //if the existing elements contains the search input
-            String name = exercise.getName();
-            if(name.contains(text)){
-                //adding the element to filtered list
-                newList.add(exercise);
-
+        if(text.length() == 0){
+            this.originalExercises.addAll(db.getExercises());
+        }else{
+            final  String name = text.toString().toLowerCase().trim();
+            for (final Exercise exercise : exercises) {
+                //if the existing elements contains the search input
+                if(exercise.getName().toLowerCase().contains(name)) {
+                    //adding the element to filtered list
+                    newList.add(exercise);
+                }
             }
         }
         exercises.clear();

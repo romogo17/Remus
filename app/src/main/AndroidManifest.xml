@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:launchMode="singleTask"
             android:name=".SelectorActivity"
             android:screenOrientation="portrait" />
         <activity
