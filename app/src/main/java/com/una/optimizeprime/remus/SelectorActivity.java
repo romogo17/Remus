@@ -23,6 +23,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
@@ -32,11 +33,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.SignInButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -54,14 +57,17 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private NavigationView navigationView;
+    ArrayList<Exercise> originalExercises = new ArrayList<>();
     ArrayList<Exercise> exercises = new ArrayList<>();
+    ArrayList<Exercise> newList = new ArrayList<>();
+
     Database db;
 
     RecyclerView.LayoutManager layoutManager;
     static EditText Texto_01;
 
-    ArrayList<Exercise> exercisesS;
-    EditText editTextSearch;
+    private String m_Text;
+
     RVAdapter adapter;
 
     @Override
@@ -92,15 +98,15 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     private void configureRecyclerView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         // specify an adapter (see also next example)
-        exercises = new ArrayList<>();
-
+        exercises = new ArrayList<>();//originalExercises = new ArrayList<>();
         mAdapter = new RVAdapter(exercises, getResources(), getApplicationContext(), this);
+        
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         //mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
-
+        originalExercises = exercises;
     }
 
     @NonNull
@@ -228,55 +234,33 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void openSearch() {
-        Texto_01 =  new EditText(this);
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage("Digite el nombre del ejercicio:");
-        Texto_01.setText("");
-        Texto_01.selectAll();
-        builder1.setView(Texto_01);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Title");
 
-        builder1.setCancelable(true);
-        builder1.setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+        // Set up the input
+        final EditText input = new EditText(this);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
 
-                        Texto_01.addTextChangedListener(new TextWatcher() {
-                            @Override
-                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                            }
-
-                            @Override
-                            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                                //mAdapter.getFilter().filter(s);
-                                //adapter.setFilter(exercises);
-                                ArrayList<Exercise> newList = new ArrayList<>();
-                                for(Exercise exercise : exercises){
-                                    String name = exercise.getName().toLowerCase();
-                                    if(name.contains(s))
-                                        newList.add(exercise);
-                                }
-                                adapter.setFilter(newList);
-
-                            }
-                            @Override
-                            public void afterTextChanged(Editable s) {
-                                filter(s.toString());
-                            }
-                        });
-                    }
-                });
-
-        builder1.setNegativeButton("Cancelar",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Mensaje("Cancelado");
-                    }
-                });
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
-
+        // Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(m_Text == ""){
+                    exercises.addAll(originalExercises);
+                }else{
+                    filter(m_Text = input.getText().toString());
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 
     public void Mensaje(String msg){
@@ -320,6 +304,8 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
     public void update(Observable observable, Object o) {
         // Clear the old data set
         this.exercises.clear();
+        //OriginalDates
+        //this.originalExercises.addAll(db.getExercises());
         // Add all the new ones
         this.exercises.addAll(db.getExercises());
         // Notify the change to the adapter
@@ -338,18 +324,18 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
 
     private void filter(String text) {
 
-        ArrayList<Exercise> filterdNames = new ArrayList<>();
-
         for (Exercise exercise : exercises) {
             //if the existing elements contains the search input
-            String name = exercise.getName().toLowerCase();
+            String name = exercise.getName();
             if(name.contains(text)){
                 //adding the element to filtered list
-                filterdNames.add(exercise);
+                newList.add(exercise);
+
             }
         }
-        adapter.filterList(filterdNames);
+        exercises.clear();
+        exercises.addAll(newList);
+        mAdapter.notifyDataSetChanged();
     }
-
 
 }
