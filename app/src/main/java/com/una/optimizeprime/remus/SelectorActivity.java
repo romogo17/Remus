@@ -332,14 +332,36 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
             for (Exercise ex : originalExercises) {
                 if (ex.getName().toLowerCase().contains(name)
                         || ex.getCreated_by().toLowerCase().contains(name)
-                        || ex.getClef().toLowerCase().contains(name)
-                        || ex.getKey().toLowerCase().contains(name)) {
+                        || ex.getClef().toLowerCase().contains(stringToEnglish(name))
+                        || ex.getKey().toLowerCase().contains(stringToEnglish(name))) {
                     //adding the element to filtered list
                     exercises.add(ex);
                 }
             }
         }
         mAdapter.notifyDataSetChanged();
+    }
+
+    public String stringToEnglish(String s) {
+        switch (s) {
+            case "do":
+                return "c";
+            case "re":
+                return "d";
+            case "mi":
+                return "e";
+            case "fa":
+                return "f";
+            case "sol":
+                return "g";
+            case "la":
+                return "a";
+            case "si":
+                return "b";
+            case "sostenido":
+                return "#";
+            default: return s;
+        }
     }
 
 }
